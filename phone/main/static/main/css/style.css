@@ -1,0 +1,61 @@
+:root {
+    --brand: #5267e8;
+    --ink: #182230;
+    --muted: #8490a1;
+    --line: #e9edf2;
+}
+
+body {
+    background: #f6f7f9;
+    color: var(--ink);
+    font: 15px Arial, sans-serif;
+}
+
+header {
+    padding: 20px max(20px, calc((100% - 900px) / 2));
+    background: white;
+    border-bottom: 1px solid var(--line);
+}
+
+header a {
+    color: var(--ink);
+    font-size: 19px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header span { color: var(--brand); }
+
+main {
+    width: min(900px, calc(100% - 32px));
+    margin: 40px auto;
+}
+
+h1 { margin: 0 0 8px; font-size: 30px; }
+.subtitle { margin: 0 0 24px; color: var(--muted); }
+.toolbar { display: flex; gap: 12px; margin-bottom: 16px; }
+.toolbar input { flex: 1; min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: 9px; }
+.toolbar button, .primary { display: inline-block; border: 0; border-radius: 9px; padding: 12px 16px; background: var(--brand); color: white; font-weight: bold; text-decoration: none; cursor: pointer; }
+.contacts { overflow: hidden; background: white; border: 1px solid var(--line); border-radius: 12px; }
+.contact { display: flex; justify-content: space-between; gap: 16px; padding: 18px; border-bottom: 1px solid var(--line); }
+.contact:last-child { border-bottom: 0; }
+.name { margin: 0 0 5px; font-weight: bold; }
+.details { color: var(--muted); font-size: 13px; }
+.contact-info { min-width: 0; }
+.contact-info p { margin: 5px 0 0; }
+.contact-actions, .contact-actions form, .form-actions { display: flex; align-items: center; gap: 8px; }
+.contact-actions form { margin: 0; }
+.secondary, .danger { display: inline-block; border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; background: white; color: var(--ink); text-decoration: none; cursor: pointer; }
+.danger { color: #b42318; }
+.empty { padding: 20px; color: var(--muted); }
+.contact-form { max-width: 560px; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 12px; }
+.form-field { margin-bottom: 16px; }
+.form-field label { display: block; margin-bottom: 6px; font-weight: bold; }
+.form-field input, .form-field textarea { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+.error { display: block; margin-top: 5px; color: #b42318; }
+
+@media (max-width: 520px) {
+    main { margin-top: 26px; }
+    .toolbar, .contact { flex-direction: column; }
+    .contact { gap: 6px; }
+}

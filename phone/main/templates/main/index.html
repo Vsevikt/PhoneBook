@@ -1,0 +1,36 @@
+﻿{% extends "main/layout.html" %}
+
+{% block title %}Contacts Phonebook{% endblock %}
+
+{% block content %}
+    <h1>Contacts</h1>
+    <p class="subtitle">Your people, all in one place.</p>
+
+    <div class="toolbar">
+        <input id="search" type="search" placeholder="Search contacts" aria-label="Search contacts">
+        <a class="primary" href="{% url 'create_contact' %}">Add contact</a>
+    </div>
+
+    <div class="contacts">
+    {% for contact in contacts %}
+        <article class="contact">
+            <div class="contact-info">
+                <h2 class="name">{{ contact.first_name }} {{ contact.last_name }}</h2>
+                <p class="details">{{ contact.phone_number }} · {{ contact.email }}</p>
+                {% if contact.notes %}<p class="notes">{{ contact.notes }}</p>{% endif %}
+            </div>
+            <div class="contact-actions">
+                <a class="secondary" href="{% url 'update_contact' contact.pk %}">Edit</a>
+                <form method="post" action="{% url 'delete_contact' %}" onsubmit="return confirm('Delete this contact?');">
+                    {% csrf_token %}
+                    <input type="hidden" name="person" value="{{ contact.pk }}">
+                    <button class="danger" type="submit">Delete</button>
+                </form>
+            </div>
+        </article>
+    {% empty %}
+        <p class="empty">No contacts yet. Add your first contact to get started.</p>
+    {% endfor %}
+    </div>
+{% endblock %}
+

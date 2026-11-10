@@ -1,0 +1,24 @@
+{% extends "main/layout.html" %}
+
+{% block title %}{{ title }} — Phonebook{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p class="subtitle">Keep your contact details up to date.</p>
+    <form class="contact-form" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.name == 'phone_number' %}<small class="error" data-phone-error aria-live="polite" hidden>Use digits, spaces, and an optional + at the beginning.</small>{% endif %}
+                {% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}
+            </div>
+        {% endfor %}
+        {% for error in form.non_field_errors %}<p class="error">{{ error }}</p>{% endfor %}
+        <div class="form-actions">
+            <button class="primary" type="submit">{{ button }}</button>
+            <a class="secondary" href="{% url 'home' %}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}
